@@ -5,7 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { FaComment, FaEnvelope, FaPaperPlane, FaUser } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaComment,
+  FaEnvelope,
+  FaPaperPlane,
+  FaUser,
+} from "react-icons/fa";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,10 +20,32 @@ export default function ContactForm() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Add form status state
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulaire soumis:", formData);
-    setFormData({ name: "", email: "", message: "" });
+    setFormStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) throw new Error("Failed to send message");
+      setFormStatus("sent");
+      // Reset form data
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setFormStatus("error");
+    }
   };
 
   const handleChange = (
@@ -26,6 +54,43 @@ export default function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  if (formStatus === "sent") {
+    // Display success message
+    return (
+      <section
+        id="contact"
+        className="py-12 sm:py-20 bg-gradient-to-b from-background to-secondary/10 relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-grid-white/10" />
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8 sm:mb-16"
+          >
+            <FaCheckCircle className="text-green-500 w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">
+              Merci pour votre message!
+            </h2>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              Notre équipe vous contactera sous peu.
+            </p>
+          </motion.div>
+          <div className="flex justify-center">
+            <Button
+              onClick={() => setFormStatus("idle")}
+              className="gradient-bg-primary hover:opacity-90 transition-opacity button-glow text-white text-base sm:text-lg py-2 sm:py-3"
+            >
+              Envoyer un autre message
+            </Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -102,11 +167,24 @@ export default function ContactForm() {
 
               <Button
                 type="submit"
+                disabled={formStatus === "sending"}
                 className="w-full gradient-bg-primary hover:opacity-90 transition-opacity button-glow text-white text-base sm:text-lg py-2 sm:py-3"
               >
-                <FaPaperPlane className="mr-2" />
-                Envoyer le message
+                {formStatus === "sending" ? (
+                  "Envoi en cours..."
+                ) : (
+                  <>
+                    <FaPaperPlane className="mr-2" />
+                    Envoyer le message
+                  </>
+                )}
               </Button>
+
+              {formStatus === "error" && (
+                <p className="text-red-500 text-center mt-4">
+                  Une erreur est survenue. Veuillez réessayer plus tard.
+                </p>
+              )}
             </form>
           </div>
         </motion.div>
