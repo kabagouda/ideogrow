@@ -54,7 +54,7 @@ export default function RecentProjects() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-background to-secondary/20"
+      className="py-12 sm:py-20 bg-gradient-to-b from-background to-secondary/20"
     >
       <div className="container mx-auto px-4">
         <motion.div
@@ -64,8 +64,10 @@ export default function RecentProjects() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-3xl font-bold mb-4">Nos Projets Récents</h2>
-          <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
+            Nos Projets Récents
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
             Découvrez quelques-unes de nos réalisations récentes qui illustrent
             notre expertise et notre capacité à créer des solutions numériques
             innovantes.
@@ -76,7 +78,7 @@ export default function RecentProjects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {projects.map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
@@ -86,18 +88,22 @@ export default function RecentProjects() {
                   alt={project.title}
                   width={400}
                   height={200}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-40 sm:h-48 object-cover"
                 />
-                <CardContent className="p-4">
-                  <h3 className="font-semibold text-lg mb-2">
+                <CardContent className="p-3 sm:p-4">
+                  <h3 className="font-semibold text-base sm:text-lg mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="secondary">
+                      <Badge
+                        key={tagIndex}
+                        variant="secondary"
+                        className="text-xs sm:text-sm"
+                      >
                         {tag}
                       </Badge>
                     ))}

@@ -1,22 +1,24 @@
 import Link from "next/link";
 import {
   FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
   FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
 } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="header-footer-bg border-t border-border/40">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-foreground">Ideogrow</h3>
-            <p className="mb-4 text-muted-foreground">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="text-center sm:text-left">
+            <h3 className="text-xl font-bold mb-3 sm:mb-4 text-foreground">
+              Ideogrow
+            </h3>
+            <p className="mb-3 sm:mb-4 text-muted-foreground">
               Votre partenaire en développement web et mobile
             </p>
-            <div className="flex space-x-4">
+            <div className="flex justify-center sm:justify-start space-x-4">
               {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map(
                 (Icon, index) => (
                   <a
@@ -30,8 +32,9 @@ export default function Footer() {
               )}
             </div>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+
+          <div className="text-center sm:text-left">
+            <h4 className="text-lg font-semibold mb-3 sm:mb-4 text-foreground">
               Services
             </h4>
             <ul className="space-y-2">
@@ -52,8 +55,9 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+
+          <div className="text-center sm:text-left">
+            <h4 className="text-lg font-semibold mb-3 sm:mb-4 text-foreground">
               Liens rapides
             </h4>
             <ul className="space-y-2">
@@ -71,8 +75,9 @@ export default function Footer() {
               )}
             </ul>
           </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4 text-foreground">
+
+          <div className="text-center sm:text-left">
+            <h4 className="text-lg font-semibold mb-3 sm:mb-4 text-foreground">
               Contactez-nous
             </h4>
             <p className="text-muted-foreground">Email: contact@ideogrow.com</p>
@@ -82,9 +87,9 @@ export default function Footer() {
             </p>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-border/40 text-center">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/40 text-center">
           <p className="text-muted-foreground">
-            &copy; {new Date().getFullYear()} Ideogrow. Tous droits réservés.
+            © {new Date().getFullYear()} Ideogrow. Tous droits réservés.
           </p>
         </div>
       </div>

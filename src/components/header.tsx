@@ -11,7 +11,6 @@ import { ThemeToggle } from "./theme-toggle";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Map old anchors to new IDs
   const navItems = [
     { label: "Services", id: "services" },
     { label: "Pourquoi nous", id: "why-us" },
@@ -22,30 +21,30 @@ export default function Header() {
 
   return (
     <header className="header-footer-bg sticky top-0 z-50 border-b border-border/40">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-2 sm:py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <Image
               src="/logo-dark.png"
               alt="Ideogrow Logo"
-              width={150}
-              height={40}
-              className="hidden dark:block h-10 w-auto"
+              width={120}
+              height={32}
+              className="hidden dark:block h-8 sm:h-10 w-auto"
             />
             <Image
               src="/logo-light.png"
               alt="Ideogrow Logo"
-              width={150}
-              height={40}
-              className="dark:hidden h-10 w-auto"
-            />{" "}
+              width={120}
+              height={32}
+              className="dark:hidden h-8 sm:h-10 w-auto"
+            />
           </Link>
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-4 lg:space-x-6">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="text-foreground/80 hover:text-primary transition-colors"
+                className="text-sm lg:text-base text-foreground/80 hover:text-primary transition-colors"
               >
                 {item.label}
               </a>
@@ -53,22 +52,22 @@ export default function Header() {
           </nav>
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle />
-            <Button asChild>
+            <Button size="sm" className="text-sm" asChild>
               <Link href="#contact">Nous contacter</Link>
             </Button>
           </div>
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-3">
             <ThemeToggle />
             <button
-              className="text-foreground/80 hover:text-primary transition-colors"
+              className="text-foreground/80 hover:text-primary transition-colors p-1"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
               {isOpen ? (
-                <FaTimes className="w-6 h-6" />
+                <FaTimes className="w-5 h-5" />
               ) : (
-                <FaBars className="w-6 h-6" />
+                <FaBars className="w-5 h-5" />
               )}
             </button>
           </div>
@@ -88,13 +87,20 @@ export default function Header() {
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className="block text-foreground/80 hover:text-primary transition-colors"
+                      className="block text-sm text-foreground/80 hover:text-primary transition-colors py-2"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </a>
                   </li>
                 ))}
+                <li className="pt-2">
+                  <Button size="sm" className="w-full text-sm" asChild>
+                    <Link href="#contact" onClick={() => setIsOpen(false)}>
+                      Nous contacter
+                    </Link>
+                  </Button>
+                </li>
               </ul>
             </nav>
           </motion.div>

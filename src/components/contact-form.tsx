@@ -30,7 +30,7 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-b from-background to-secondary/10 relative overflow-hidden"
+      className="py-12 sm:py-20 bg-gradient-to-b from-background to-secondary/10 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-grid-white/10" />
       <div className="container mx-auto px-4 relative">
@@ -39,15 +39,15 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <span className="text-sm font-semibold text-primary uppercase tracking-wider">
             Contact
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4 gradient-text">
             Parlons de Votre Projet
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Prêt à transformer votre vision en réalité ? Contactez-nous dès
             aujourd&apos;hui pour discuter de votre projet.
           </p>
@@ -58,10 +58,10 @@ export default function ContactForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="max-w-lg mx-auto"
+          className="w-full max-w-lg mx-auto px-4 sm:px-0"
         >
-          <div className="bg-card/50 backdrop-blur-md p-8 rounded-2xl shadow-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-card/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div className="relative">
                 <FaUser className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -71,7 +71,7 @@ export default function ContactForm() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="pl-10 bg-background/50 hover-lift focus:ring focus:ring-primary/50"
+                  className="pl-10 bg-background/50 hover-lift focus:ring focus:ring-primary/50 w-full text-base sm:text-lg"
                 />
               </div>
 
@@ -84,7 +84,7 @@ export default function ContactForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="pl-10 bg-background/50 hover-lift focus:ring focus:ring-primary/50"
+                  className="pl-10 bg-background/50 hover-lift focus:ring focus:ring-primary/50 w-full text-base sm:text-lg"
                 />
               </div>
 
@@ -96,13 +96,13 @@ export default function ContactForm() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="pl-10 bg-background/50 min-h-[150px] hover-lift focus:ring focus:ring-primary/50"
+                  className="pl-10 bg-background/50 min-h-[120px] sm:min-h-[150px] hover-lift focus:ring focus:ring-primary/50 w-full text-base sm:text-lg"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full gradient-bg-primary hover:opacity-90 transition-opacity button-glow text-white"
+                className="w-full gradient-bg-primary hover:opacity-90 transition-opacity button-glow text-white text-base sm:text-lg py-2 sm:py-3"
               >
                 <FaPaperPlane className="mr-2" />
                 Envoyer le message
