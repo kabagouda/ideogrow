@@ -27,18 +27,18 @@ export default function Header() {
             <Image
               src="/logo-dark.png"
               alt="Ideogrow Logo"
-              width={120}
-              height={32}
-              className="hidden dark:block h-8 sm:h-10 w-auto"
+              width={160}
+              height={42}
+              className="hidden dark:block h-12 sm:h-14 w-auto"
             />
             <Image
               src="/logo-light.png"
               alt="Ideogrow Logo"
-              width={120}
-              height={32}
-              className="dark:hidden h-8 sm:h-10 w-auto"
-            />
-          </Link>
+              width={160}
+              height={42}
+              className="dark:hidden h-12 sm:h-14 w-auto"
+            />{" "}
+          </Link>{" "}
           <nav className="hidden md:flex space-x-4 lg:space-x-6">
             {navItems.map((item) => (
               <a
