@@ -3,7 +3,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaTwitter,
+  FaTiktok,
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -19,17 +19,38 @@ export default function Footer() {
               Votre partenaire en développement web et mobile
             </p>
             <div className="flex justify-center sm:justify-start space-x-4">
-              {[FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram].map(
-                (Icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                )
-              )}
+              <a
+                href="https://facebook.com/ideogrow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <FaFacebookF className="w-5 h-5" />
+              </a>
+              <a
+                href="https://tiktok.com/@ideogrow_agency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <FaTiktok className="w-5 h-5" />
+              </a>
+              <a
+                href="https://linkedin.com/company/ideogrow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <FaLinkedinIn className="w-5 h-5" />
+              </a>
+              <a
+                href="https://instagram.com/ideogrow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
