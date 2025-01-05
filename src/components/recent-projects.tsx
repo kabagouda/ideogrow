@@ -1,31 +1,79 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { FaAppStore, FaGlobe, FaGooglePlay } from "react-icons/fa";
 
 const projects = [
   {
     title: "Harmonie Signature",
     description:
-      "Site web moderne pour un complexe de bowling et de loisirs, intégrant un système de réservation en ligne",
+      "Site web moderne pour un complexe de bowling et de loisirs, intégrant un système de réservation en ligne.",
     image: "/harmoniesignature.png",
-    tags: ["PHP", "MySQL", "blog", "Système de Réservation"],
+    tags: ["PHP", "MySQL", "Blog", "Réservation"],
+    website: "https://www.harmoniesignature.com/",
   },
   {
     title: "La Majuscule",
     description:
-      "Plateforme professionnelle pour une entreprise de services en énergie et technologie",
+      "Plateforme professionnelle pour une entreprise de services en énergie et technologie.",
     image: "/lamajuscule.png",
-    tags: ["Prise de rendez-vous", "Services", "Realisations"],
+    tags: ["Rendez-vous", "Services", "Réalisations"],
+    website: "https://www.lamajuscule.com/",
   },
   {
     title: "STARSA",
     description:
-      "Site vitrine pour une entreprise de services, avec un design moderne et responsive",
+      "Site vitrine pour une entreprise de services, avec un design moderne et adaptatif.",
     image: "/starsa.png",
     tags: ["WordPress", "UI/UX", "Responsive"],
+    website: "https://gfatogo.com/starsa/",
+  },
+  {
+    title: "Ekko Fleet Manager",
+    description:
+      "Application mobile simplifiée pour contrôler et gérer votre flotte en déplacement.",
+    image: "/ekko-fleet-manager.png",
+    tags: ["Flutter", "Gestion de flotte", "Efficacité", "Suivi"],
+    appLinks: [
+      {
+        platform: "iOS",
+        url: "https://apps.apple.com/fr/app/ekko-fleet-manager/id6590602360",
+      },
+      {
+        platform: "Android",
+        url: "https://play.google.com/store/apps/details?id=ekko.munic.fleet.manager",
+      },
+    ],
+  },
+  {
+    title: "Ekko Driver",
+    description:
+      "Plateforme tout-en-un pour les conducteurs, intégrant données véhicules et trajets pour des opérations efficaces.",
+    image: "/ekko-driver.png",
+    tags: ["Flutter", "Application mobile", "Conduite", "Performance"],
+    appLinks: [
+      {
+        platform: "iOS",
+        url: "https://apps.apple.com/fr/app/ekko-driver/id6501989300",
+      },
+    ],
+  },
+  {
+    title: "IT Certs - IT Certifications",
+    description:
+      "Plateforme offrant des tests pratiques et des questions de certification pour aider les professionnels de l'informatique à préparer leurs examens.",
+    image: "/it-certs.png",
+    tags: ["Firebase", "Certification", "IT", "Professionnel"],
+    appLinks: [
+      {
+        platform: "Android",
+        url: "https://play.google.com/store/apps/details?id=com.vayesa.itcerts",
+      },
+    ],
   },
 ];
 
@@ -83,13 +131,15 @@ export default function RecentProjects() {
           {projects.map((project, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 h-full dark:bg-background/50 dark:backdrop-blur-sm hover-lift">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={400}
-                  height={200}
-                  className="w-full h-40 sm:h-48 object-cover"
-                />
+                <div className="relative h-44 sm:h-56">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
                 <CardContent className="p-3 sm:p-4">
                   <h3 className="font-semibold text-base sm:text-lg mb-2">
                     {project.title}
@@ -97,7 +147,7 @@ export default function RecentProjects() {
                   <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                     {project.tags.map((tag, tagIndex) => (
                       <Badge
                         key={tagIndex}
@@ -107,6 +157,41 @@ export default function RecentProjects() {
                         {tag}
                       </Badge>
                     ))}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.website && (
+                      <Button asChild variant="outline" size="sm">
+                        <a
+                          href={project.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-xs sm:text-sm"
+                        >
+                          <FaGlobe className="mr-1 sm:mr-2" />
+                          Visiter le site web
+                        </a>
+                      </Button>
+                    )}
+                    {project.appLinks &&
+                      project.appLinks.map((link, i) => (
+                        <Button key={i} asChild variant="outline" size="sm">
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-xs sm:text-sm"
+                          >
+                            {link.platform === "iOS" ? (
+                              <FaAppStore className="mr-1 sm:mr-2" />
+                            ) : (
+                              <FaGooglePlay className="mr-1 sm:mr-2" />
+                            )}
+                            {link.platform === "iOS"
+                              ? "Voir sur l'App Store"
+                              : "Voir sur Google Play"}
+                          </a>
+                        </Button>
+                      ))}
                   </div>
                 </CardContent>
               </Card>
