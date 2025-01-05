@@ -90,9 +90,19 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             Transformez Votre Vision en{" "}
-            <span className="gradient-text font-extrabold animate-float">
+            <motion.span
+              className="gradient-text font-extrabold inline-block"
+              animate={{
+                y: [0, -10, 0],
+                transition: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+            >
               Réalité Numérique
-            </span>
+            </motion.span>
           </motion.h1>
 
           <motion.p
